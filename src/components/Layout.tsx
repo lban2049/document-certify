@@ -21,25 +21,39 @@ export function Layout({ children }: LayoutProps) {
   const location = useLocation();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-primary opacity-10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-secondary opacity-10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-success opacity-5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '4s'}}></div>
+      </div>
+      
       {/* Header */}
-      <header className="border-b border-border bg-card shadow-soft">
-        <div className="container mx-auto px-6 py-4">
+      <header className="glass-card border-b-0 sticky top-0 z-40 backdrop-blur-xl">
+        <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-foreground">文档质量评估报告</h1>
-              <p className="text-sm text-muted-foreground mt-1">
-                项目文档全面质量分析 - {new Date().toLocaleDateString('zh-CN')}
+            <div className="space-y-2">
+              <h1 className="text-3xl font-bold gradient-text">文档质量评估报告</h1>
+              <p className="text-sm text-muted-foreground flex items-center space-x-2">
+                <div className="w-2 h-2 bg-gradient-primary rounded-full animate-pulse"></div>
+                <span>项目文档全面质量分析 - {new Date().toLocaleDateString('zh-CN')}</span>
               </p>
+            </div>
+            <div className="hidden md:flex items-center space-x-4">
+              <div className="text-right">
+                <div className="text-2xl font-bold gradient-text">82.3</div>
+                <div className="text-xs text-muted-foreground">综合得分</div>
+              </div>
             </div>
           </div>
         </div>
       </header>
 
       {/* Navigation */}
-      <nav className="border-b border-border bg-card">
+      <nav className="glass-card border-b-0 border-t border-border/50">
         <div className="container mx-auto px-6">
-          <div className="flex space-x-1 overflow-x-auto">
+          <div className="flex space-x-1 overflow-x-auto py-2">
             {navigationItems.map((item) => {
               const isActive = location.pathname === item.path;
               const Icon = item.icon;
@@ -51,14 +65,18 @@ export function Layout({ children }: LayoutProps) {
                   size="sm"
                   asChild
                   className={cn(
-                    "flex items-center space-x-2 px-4 py-3 rounded-none border-b-2 border-transparent transition-colors",
-                    isActive && "border-primary bg-primary/5 text-primary",
-                    !isActive && "hover:bg-muted/50"
+                    "flex items-center space-x-3 px-6 py-3 rounded-xl border-2 border-transparent transition-all duration-300 relative overflow-hidden group",
+                    isActive && "bg-gradient-primary text-white shadow-glow border-primary/20",
+                    !isActive && "hover:bg-gradient-card hover:shadow-card hover:border-border/50 hover:-translate-y-1"
                   )}
                 >
                   <Link to={item.path}>
-                    <Icon className={cn("h-4 w-4", isActive ? "text-primary" : item.color)} />
-                    <span className="whitespace-nowrap">{item.label}</span>
+                    <div className="absolute inset-0 bg-gradient-primary opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                    <Icon className={cn(
+                      "h-4 w-4 transition-transform group-hover:scale-110", 
+                      isActive ? "text-white" : item.color
+                    )} />
+                    <span className="whitespace-nowrap font-medium relative z-10">{item.label}</span>
                   </Link>
                 </Button>
               );
@@ -68,8 +86,10 @@ export function Layout({ children }: LayoutProps) {
       </nav>
 
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-8">
-        {children}
+      <main className="container mx-auto px-6 py-12 relative z-10">
+        <div className="max-w-7xl mx-auto">
+          {children}
+        </div>
       </main>
     </div>
   );
