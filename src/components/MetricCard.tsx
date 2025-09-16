@@ -117,7 +117,7 @@ export function MetricCard({
                   <TrendingDown className="h-3 w-3" />
                 ) : null}
                 <span className="text-xs font-medium">
-                  {trend === "up" ? "改善" : trend === "down" ? "下降" : "稳定"}
+                  {trend === "up" ? "Improving" : trend === "down" ? "Declining" : "Stable"}
                 </span>
               </Badge>
             )}

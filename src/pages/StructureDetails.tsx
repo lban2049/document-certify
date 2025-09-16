@@ -24,63 +24,63 @@ const structureData = {
   weight: 15,
   metrics: [
     {
-      name: "必需章节完整性",
+      name: "Required Section Completeness",
       key: "section_presence",
       score: 85.7,
       present: 12,
       total: 14,
       status: "success" as const,
-      description: "包含必需章节的文档完整度",
+      description: "Completeness of documents containing required sections",
       icon: List,
     },
     {
-      name: "导航可用性",
+      name: "Navigation Usability",
       key: "navigability",
       score: 91.2,
       working: 42,
       total: 46,
       status: "success" as const,
-      description: "目录链接的有效性和准确性",
+      description: "Effectiveness and accuracy of table of contents links",
       icon: Navigation,
     },
     {
-      name: "信息可达性",
+      name: "Information Accessibility",
       key: "information_scent",
       score: 45.5,
       reachable: 5,
       total: 11,
       status: "critical" as const,
-      description: "关键页面从首页的可达性",
+      description: "Accessibility of key pages from homepage",
       icon: MousePointer,
     }
   ],
   missingSections: [
     {
-      name: "快速入门指南",
+      name: "Quick Start Guide",
       files: ["README.md", "docs/getting-started.md"],
       priority: "high",
-      description: "缺少新用户快速上手的指导内容"
+      description: "Missing guidance content for new users to get started quickly"
     },
     {
-      name: "故障排除",
+      name: "Troubleshooting",
       files: ["docs/troubleshooting.md"],
       priority: "medium", 
-      description: "缺少常见问题和解决方案的章节"
+      description: "Missing section for common issues and solutions"
     }
   ],
   navigationIssues: [
     {
       id: 1,
-      type: "链接失效",
-      description: "目录中指向'高级配置'的链接无法正常跳转",
+      type: "Broken Link",
+      description: "Link to 'Advanced Configuration' in table of contents not working properly",
       file: "docs/README.md",
       line: 23,
       severity: "major"
     },
     {
       id: 2,
-      type: "锚点错误",
-      description: "API参考目录的锚点与实际标题不匹配",
+      type: "Anchor Error",
+      description: "API reference table of contents anchors don't match actual headers",
       file: "docs/api/index.md", 
       line: 15,
       severity: "minor"
@@ -88,22 +88,22 @@ const structureData = {
   ],
   clickPaths: [
     {
-      target: "快速入门",
-      currentPath: "首页 → 文档 → 指南 → 快速入门",
+      target: "Quick Start",
+      currentPath: "Home → Documentation → Guides → Quick Start",
       clicks: 4,
       maxClicks: 3,
       status: "warning"
     },
     {
-      target: "API参考",
-      currentPath: "首页 → API文档",
+      target: "API Reference",
+      currentPath: "Home → API Documentation",
       clicks: 2,
       maxClicks: 3,
       status: "success"
     },
     {
-      target: "示例代码",
-      currentPath: "首页 → 文档 → 示例 → 代码库",
+      target: "Code Examples",
+      currentPath: "Home → Documentation → Examples → Code Repository",
       clicks: 4,
       maxClicks: 3,
       status: "warning"
@@ -111,22 +111,22 @@ const structureData = {
   ],
   recommendations: [
     {
-      title: "重组导航结构",
-      description: "将快速入门提升至顶级导航，减少点击路径",
-      impact: "高",
-      effort: "中"
+      title: "Restructure Navigation",
+      description: "Promote Quick Start to top-level navigation to reduce click paths",
+      impact: "High",
+      effort: "Medium"
     },
     {
-      title: "添加缺失章节",
-      description: "补充故障排除和高级用法指南",
-      impact: "中",
-      effort: "高"
+      title: "Add Missing Sections",
+      description: "Add troubleshooting and advanced usage guides",
+      impact: "Medium",
+      effort: "High"
     },
     {
-      title: "修复导航链接",
-      description: "更新失效的目录链接和锚点",
-      impact: "低",
-      effort: "低"
+      title: "Fix Navigation Links",
+      description: "Update broken table of contents links and anchors",
+      impact: "Low",
+      effort: "Low"
     }
   ]
 };

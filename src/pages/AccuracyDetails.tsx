@@ -22,30 +22,30 @@ const accuracyData = {
   weight: 35,
   metrics: [
     {
-      name: "签名一致性",
+      name: "Signature Parity",
       key: "signature_parity",
       score: 95.2,
       target: 98,
       status: "success" as const,
-      description: "函数签名与源代码匹配度",
+      description: "Function signatures in docs match source code",
       icon: Code,
     },
     {
-      name: "链接有效性",
+      name: "Link Validity",
       key: "link_validity", 
       score: 87.3,
       target: 95,
       status: "warning" as const,
-      description: "内部链接和交叉引用的有效性",
+      description: "Validity of internal links and cross-references",
       icon: LinkIcon,
     },
     {
-      name: "代码示例完整性",
+      name: "Code Sample Integrity",
       key: "code_sample_integrity",
       score: 83.1,
       target: 90,
       status: "warning" as const,
-      description: "代码示例语法正确性和语言标记",
+      description: "Code example syntax correctness and language tagging",
       icon: FileText,
     }
   ],
@@ -53,38 +53,38 @@ const accuracyData = {
     {
       id: 1,
       severity: "critical",
-      title: "API端点文档不匹配",
-      description: "/api/v1/users/{id} 端点的返回类型与实际实现不符",
+      title: "API endpoint documentation mismatch",
+      description: "/api/v1/users/{id} endpoint return type doesn't match actual implementation",
       file: "docs/api/users.md",
       line: 45,
-      suggestedAction: "更新文档以匹配当前API响应结构"
+      suggestedAction: "Update documentation to match current API response structure"
     },
     {
       id: 2,
       severity: "major",
-      title: "代码示例语法错误",
-      description: "JavaScript代码示例中缺少分号和括号不匹配",
+      title: "Code example syntax errors",
+      description: "JavaScript code examples have missing semicolons and unmatched brackets",
       file: "docs/quickstart.md",
       line: 23,
-      suggestedAction: "修复代码示例的语法错误"
+      suggestedAction: "Fix syntax errors in code examples"
     },
     {
       id: 3,
       severity: "major",
-      title: "链接失效",
-      description: "指向旧版本API参考的链接已失效",
+      title: "Broken links",
+      description: "Links pointing to old version API reference are broken",
       file: "docs/installation.md",
       line: 12,
-      suggestedAction: "更新链接指向最新版本的API文档"
+      suggestedAction: "Update links to point to latest API documentation version"
     },
     {
       id: 4,
       severity: "minor",
-      title: "函数参数类型不一致",
-      description: "getUserById函数的参数类型文档与TypeScript定义不匹配",
+      title: "Function parameter type inconsistency",
+      description: "getUserById function parameter type documentation doesn't match TypeScript definition",
       file: "docs/api/methods.md",
       line: 67,
-      suggestedAction: "同步文档中的类型定义"
+      suggestedAction: "Sync type definitions in documentation"
     }
   ]
 };
@@ -111,10 +111,10 @@ export default function AccuracyDetails() {
           <div>
             <h1 className="text-3xl font-bold text-foreground flex items-center space-x-3">
               <Shield className="h-8 w-8 text-accuracy" />
-              <span>准确性评估</span>
+              <span>Accuracy Assessment</span>
             </h1>
             <p className="text-muted-foreground mt-2">
-              文档技术内容的正确性和一致性分析
+              Technical content correctness and consistency analysis
             </p>
           </div>
           
@@ -123,7 +123,7 @@ export default function AccuracyDetails() {
               {accuracyData.overallScore.toFixed(1)}
             </div>
             <div className="text-sm text-muted-foreground">
-              权重 {accuracyData.weight}%
+              Weight {accuracyData.weight}%
             </div>
           </div>
         </div>
@@ -153,9 +153,9 @@ export default function AccuracyDetails() {
             <CardTitle className="flex items-center justify-between">
               <span className="flex items-center space-x-2">
                 <AlertTriangle className="h-5 w-5 text-warning" />
-                <span>发现的问题</span>
+                <span>Identified Issues</span>
                 <Badge variant="outline">
-                  {accuracyData.issues.length} 项
+                  {accuracyData.issues.length} items
                 </Badge>
               </span>
             </CardTitle>
@@ -176,8 +176,8 @@ export default function AccuracyDetails() {
                         <div className="flex items-center space-x-3">
                           <Icon className={`h-4 w-4 ${config.color}`} />
                           <Badge variant={config.variant} className="text-xs">
-                            {issue.severity === "critical" ? "严重" : 
-                             issue.severity === "major" ? "重要" : "轻微"}
+                            {issue.severity === "critical" ? "Critical" : 
+                             issue.severity === "major" ? "Major" : "Minor"}
                           </Badge>
                           <h3 className="font-medium text-foreground">
                             {issue.title}
@@ -190,13 +190,13 @@ export default function AccuracyDetails() {
                         
                         <div className="flex items-center space-x-4 text-xs text-muted-foreground pl-7">
                           <span>📁 {issue.file}</span>
-                          <span>📍 第 {issue.line} 行</span>
+                          <span>📍 Line {issue.line}</span>
                         </div>
                         
                         <div className="pl-7">
                           <div className="bg-muted/30 rounded-md p-3 border-l-4 border-info">
                             <p className="text-xs text-foreground">
-                              <strong>建议操作:</strong> {issue.suggestedAction}
+                              <strong>Suggested Action:</strong> {issue.suggestedAction}
                             </p>
                           </div>
                         </div>
@@ -210,7 +210,7 @@ export default function AccuracyDetails() {
             <div className="mt-6 pt-4 border-t border-border">
               <Button asChild>
                 <Link to="/recommendations">
-                  查看改进建议
+                  View Improvement Recommendations
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>
               </Button>

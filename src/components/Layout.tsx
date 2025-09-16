@@ -9,12 +9,12 @@ interface LayoutProps {
 }
 
 const navigationItems = [
-  { path: "/", icon: BarChart3, label: "总览", color: "text-primary" },
-  { path: "/accuracy", icon: Shield, label: "准确性", color: "text-accuracy" },
-  { path: "/coverage", icon: FileText, label: "覆盖率", color: "text-coverage" },
-  { path: "/readability", icon: BookOpen, label: "可读性", color: "text-readability" },
-  { path: "/structure", icon: Layers, label: "结构", color: "text-structure" },
-  { path: "/recommendations", icon: CheckCircle, label: "改进建议", color: "text-accent" },
+  { path: "/", icon: BarChart3, label: "Overview", color: "text-primary" },
+  { path: "/accuracy", icon: Shield, label: "Accuracy", color: "text-accuracy" },
+  { path: "/coverage", icon: FileText, label: "Coverage", color: "text-coverage" },
+  { path: "/readability", icon: BookOpen, label: "Readability", color: "text-readability" },
+  { path: "/structure", icon: Layers, label: "Structure", color: "text-structure" },
+  { path: "/recommendations", icon: CheckCircle, label: "Recommendations", color: "text-accent" },
 ];
 
 export function Layout({ children }: LayoutProps) {
@@ -34,16 +34,16 @@ export function Layout({ children }: LayoutProps) {
         <div className="container mx-auto px-6 py-6">
           <div className="flex items-center justify-between">
             <div className="space-y-2">
-              <h1 className="text-3xl font-bold gradient-text">文档质量评估报告</h1>
+              <h1 className="text-3xl font-bold gradient-text">Documentation Quality Assessment Report</h1>
               <p className="text-sm text-muted-foreground flex items-center space-x-2">
                 <div className="w-2 h-2 bg-gradient-primary rounded-full animate-pulse"></div>
-                <span>项目文档全面质量分析 - {new Date().toLocaleDateString('zh-CN')}</span>
+                <span>Comprehensive Project Documentation Quality Analysis - {new Date().toLocaleDateString('en-US')}</span>
               </p>
             </div>
             <div className="hidden md:flex items-center space-x-4">
               <div className="text-right">
                 <div className="text-2xl font-bold gradient-text">82.3</div>
-                <div className="text-xs text-muted-foreground">综合得分</div>
+                <div className="text-xs text-muted-foreground">Overall Score</div>
               </div>
             </div>
           </div>

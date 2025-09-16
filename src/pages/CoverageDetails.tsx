@@ -22,78 +22,78 @@ const coverageData = {
   weight: 35,
   metrics: [
     {
-      name: "API端点覆盖率",
+      name: "API Endpoint Coverage",
       key: "api_endpoint_coverage",
       score: 73.5,
       total: 147,
       documented: 108,
       status: "warning" as const,
-      description: "已文档化的公开API端点比例",
+      description: "Proportion of documented public API endpoints",
       icon: FileText,
     },
     {
-      name: "参数和返回值覆盖率",
+      name: "Parameter & Return Value Coverage",
       key: "parameter_coverage",
       score: 84.2,
       total: 423,
       documented: 356,
       status: "success" as const,
-      description: "函数参数和返回值的文档描述完整度",
+      description: "Completeness of function parameter and return value descriptions",
       icon: Search,
     },
     {
-      name: "变更检测覆盖率",
+      name: "Change Detection Coverage",
       key: "change_detection",
       score: 81.7,
       total: 23,
       documented: 19,
       status: "success" as const,
-      description: "最新代码变更在文档中的反映程度",
+      description: "Reflection of latest code changes in documentation",
       icon: GitBranch,
     }
   ],
   uncoveredItems: [
     {
       id: 1,
-      type: "API端点",
+      type: "API Endpoint",
       name: "POST /api/v1/projects/{id}/archive",
-      description: "归档项目的API端点",
+      description: "API endpoint for archiving projects",
       severity: "major",
       file: "src/routes/projects.ts",
       addedDate: "2024-01-15"
     },
     {
       id: 2,
-      type: "API端点",
+      type: "API Endpoint",
       name: "GET /api/v1/analytics/reports",
-      description: "获取分析报告的API端点",
+      description: "API endpoint for retrieving analytics reports",
       severity: "major", 
       file: "src/routes/analytics.ts",
       addedDate: "2024-01-12"
     },
     {
       id: 3,
-      type: "参数",
+      type: "Parameter",
       name: "searchFilters.dateRange",
-      description: "搜索过滤器中的日期范围参数",
+      description: "Date range parameter in search filters",
       severity: "minor",
       file: "src/types/search.ts",
       addedDate: "2024-01-10"
     },
     {
       id: 4,
-      type: "返回值",
+      type: "Return Value",
       name: "UserProfile.preferences",
-      description: "用户配置文件返回对象的偏好设置字段",
+      description: "Preferences field in user profile return object",
       severity: "minor",
       file: "src/types/user.ts", 
       addedDate: "2024-01-08"
     }
   ],
   categoryBreakdown: [
-    { name: "已文档化", value: 73.5, color: "success" },
-    { name: "部分文档化", value: 15.2, color: "warning" },
-    { name: "未文档化", value: 11.3, color: "critical" }
+    { name: "Documented", value: 73.5, color: "success" },
+    { name: "Partially Documented", value: 15.2, color: "warning" },
+    { name: "Undocumented", value: 11.3, color: "critical" }
   ]
 };
 
@@ -119,10 +119,10 @@ export default function CoverageDetails() {
           <div>
             <h1 className="text-3xl font-bold text-foreground flex items-center space-x-3">
               <FileText className="h-8 w-8 text-coverage" />
-              <span>覆盖率评估</span>
+              <span>Coverage Assessment</span>
             </h1>
             <p className="text-muted-foreground mt-2">
-              文档对公开组件的覆盖程度分析
+              Documentation coverage analysis for public components
             </p>
           </div>
           
@@ -131,7 +131,7 @@ export default function CoverageDetails() {
               {coverageData.overallScore.toFixed(1)}
             </div>
             <div className="text-sm text-muted-foreground">
-              权重 {coverageData.weight}%
+              Weight {coverageData.weight}%
             </div>
           </div>
         </div>
@@ -154,14 +154,14 @@ export default function CoverageDetails() {
                       {metric.score.toFixed(1)}%
                     </span>
                     <Badge variant={metric.status === "success" ? "default" : "secondary"}>
-                      {metric.status === "success" ? "良好" : "需改进"}
+                      {metric.status === "success" ? "Good" : "Needs Improvement"}
                     </Badge>
                   </div>
                   
                   <Progress value={metric.score} className="h-2" />
                   
                   <div className="text-xs text-muted-foreground">
-                    已文档化: {metric.documented} / {metric.total}
+                    Documented: {metric.documented} / {metric.total}
                   </div>
                   
                   <p className="text-xs text-muted-foreground">
@@ -179,7 +179,7 @@ export default function CoverageDetails() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <PieChart className="h-5 w-5 text-coverage" />
-                <span>覆盖率分布</span>
+                <span>Coverage Distribution</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -202,8 +202,8 @@ export default function CoverageDetails() {
               
               <div className="mt-6 p-4 bg-muted/30 rounded-lg">
                 <p className="text-xs text-muted-foreground">
-                  <strong>说明:</strong> "部分文档化"指有基础文档但缺少详细描述的项目；
-                  "未文档化"指完全缺少文档的公开API或组件。
+                  <strong>Note:</strong> "Partially Documented" refers to items with basic documentation but lacking detailed descriptions;
+                  "Undocumented" refers to public APIs or components completely missing documentation.
                 </p>
               </div>
             </CardContent>
@@ -213,7 +213,7 @@ export default function CoverageDetails() {
             <CardHeader>
               <CardTitle className="flex items-center space-x-2">
                 <AlertTriangle className="h-5 w-5 text-warning" />
-                <span>优先处理项目</span>
+                <span>Priority Items</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -223,7 +223,7 @@ export default function CoverageDetails() {
                   <div key={item.id} className="p-3 border border-border rounded-lg">
                     <div className="flex items-center justify-between mb-2">
                       <Badge variant={config.variant} className="text-xs">
-                        {item.severity === "major" ? "重要" : "轻微"}
+                        {item.severity === "major" ? "Major" : "Minor"}
                       </Badge>
                       <span className="text-xs text-muted-foreground">
                         {item.addedDate}
@@ -240,7 +240,7 @@ export default function CoverageDetails() {
               })}
               
               <Button variant="outline" className="w-full text-xs" size="sm">
-                查看全部 {coverageData.uncoveredItems.length} 项
+                View All {coverageData.uncoveredItems.length} Items
               </Button>
             </CardContent>
           </Card>
@@ -252,9 +252,9 @@ export default function CoverageDetails() {
             <CardTitle className="flex items-center justify-between">
               <span className="flex items-center space-x-2">
                 <XCircle className="h-5 w-5 text-critical" />
-                <span>未覆盖项目列表</span>
+                <span>Uncovered Items List</span>
                 <Badge variant="outline">
-                  {coverageData.uncoveredItems.length} 项
+                  {coverageData.uncoveredItems.length} items
                 </Badge>
               </span>
             </CardTitle>
@@ -276,7 +276,7 @@ export default function CoverageDetails() {
                             {item.type}
                           </Badge>
                           <Badge variant="outline" className="text-xs">
-                            {item.severity === "major" ? "重要" : "轻微"}
+                            {item.severity === "major" ? "Major" : "Minor"}
                           </Badge>
                           <h3 className="font-medium text-foreground">
                             {item.name}
@@ -289,7 +289,7 @@ export default function CoverageDetails() {
                         
                         <div className="flex items-center space-x-4 text-xs text-muted-foreground">
                           <span>📁 {item.file}</span>
-                          <span>📅 添加于 {item.addedDate}</span>
+                          <span>📅 Added {item.addedDate}</span>
                         </div>
                       </div>
                     </div>
@@ -301,7 +301,7 @@ export default function CoverageDetails() {
             <div className="mt-6 pt-4 border-t border-border">
               <Button asChild>
                 <Link to="/recommendations">
-                  查看改进建议
+                  View Improvement Recommendations
                   <ArrowRight className="h-4 w-4 ml-2" />
                 </Link>
               </Button>
